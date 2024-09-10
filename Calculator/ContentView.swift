@@ -27,6 +27,10 @@ enum ButtonText: String {
     case deleteOne = "<-"
     case dot = "."
     
+    
+    
+    
+    
     var color: Color {
         switch self {
         case .divide, .multiply, .substruct, .sum, .deleteOne:
@@ -42,7 +46,7 @@ enum ButtonText: String {
 
 struct ContentView: View {
     
-    @State var value = "0"
+    @State private var value = "0"
     
     let buttons: [[ButtonText]] = [
         [.clearAll, .divide, .multiply, .deleteOne],
@@ -53,36 +57,34 @@ struct ContentView: View {
     ]
     
     var body: some View {
-        ZStack {
-            VStack {
+        VStack {
+            Spacer()
+            HStack{
                 Spacer()
-                HStack{
-                    Spacer()
-                    Text(value)
-                        .bold()
-                        .font(.system(size: 52))
-                        .foregroundColor(.black)
-                }
-                .padding()
-                ForEach(buttons, id: \.self) { row in
-                    HStack(spacing: 12) {
-                        ForEach(row, id: \.self) { item in
-                            Button(
-                                action: {
-                                    self.tap(button: item)
-                                },
-                                label: {
-                                    Text (item.rawValue)
-                                        .frame(
-                                            width: buttonWidth(button: item),
-                                            height: buttonHeigth()
-                                        )
-                                        .font(.system(size: 40))
-                                        .background(item.color)
-                                        .foregroundColor(.black)
-                                        .cornerRadius(20)
-                                })
-                        }
+                Text(value)
+                    .bold()
+                    .font(.system(size: 52))
+                    .foregroundColor(.black)
+            }
+            .padding()
+            ForEach(buttons, id: \.self) { row in
+                HStack(spacing: 12) {
+                    ForEach(row, id: \.self) { item in
+                        Button(
+                            action: {
+                                self.tap(button: item)
+                            },
+                            label: {
+                                Text (item.rawValue)
+                                    .frame(
+                                        width: buttonWidth(button: item),
+                                        height: buttonHeigth()
+                                    )
+                                    .font(.system(size: 40))
+                                    .background(item.color)
+                                    .foregroundColor(.black)
+                                    .cornerRadius(20)
+                            })
                     }
                 }
             }
