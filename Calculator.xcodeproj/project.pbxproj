@@ -11,6 +11,7 @@
 		35C8BF6E2C8EEA6E00738398 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C8BF6D2C8EEA6E00738398 /* ContentView.swift */; };
 		35C8BF702C8EEA7100738398 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35C8BF6F2C8EEA7100738398 /* Assets.xcassets */; };
 		35C8BF732C8EEA7100738398 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35C8BF722C8EEA7100738398 /* Preview Assets.xcassets */; };
+		35F5B8042C8FFFFF0074AF1E /* ButtonHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F5B8032C8FFFFF0074AF1E /* ButtonHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		35C8BF6D2C8EEA6E00738398 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		35C8BF6F2C8EEA7100738398 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35C8BF722C8EEA7100738398 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		35F5B8032C8FFFFF0074AF1E /* ButtonHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				35C8BF6B2C8EEA6E00738398 /* CalculatorApp.swift */,
 				35C8BF6D2C8EEA6E00738398 /* ContentView.swift */,
+				35F5B8032C8FFFFF0074AF1E /* ButtonHandler.swift */,
 				35C8BF6F2C8EEA7100738398 /* Assets.xcassets */,
 				35C8BF712C8EEA7100738398 /* Preview Content */,
 			);
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35C8BF6E2C8EEA6E00738398 /* ContentView.swift in Sources */,
+				35F5B8042C8FFFFF0074AF1E /* ButtonHandler.swift in Sources */,
 				35C8BF6C2C8EEA6E00738398 /* CalculatorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

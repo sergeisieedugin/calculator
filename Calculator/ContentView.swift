@@ -47,6 +47,7 @@ enum ButtonText: String {
 struct ContentView: View {
     
     @State private var value = "0"
+    private let valueController = ValueController()
     
     let buttons: [[ButtonText]] = [
         [.clearAll, .divide, .multiply, .deleteOne],
@@ -102,25 +103,22 @@ struct ContentView: View {
         return (UIScreen.main.bounds.width - (5*12)) / 4
     }
     
+    
+    
     func tap (button: ButtonText) -> Void {
         switch button {
         case .sum, .substruct, .multiply, .divide:
+            self.value = valueController.addOperation(value: self.value, symbol: button.rawValue)
             break
         case .clearAll:
-            self.value = "0"
+            self.value = valueController.clearAll();
+            break
         case .deleteOne:
-            self.value = String(self.value.prefix(self.value.count-1))
-            if (self.value.count == 0) {
-                self.value = "0"
-            }
+            self.value = valueController.removeLast(value: self.value)
+        case .equal:
+            break
         default:
-            let number = button.rawValue
-            if (self.value == "0") {
-                self.value = number
-            }
-            else {
-                self.value = self.value + number
-            }
+            self.value = valueController.printSymbol(incoming: button.rawValue, value: self.value)
         }
     }
     
