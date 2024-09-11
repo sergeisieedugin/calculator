@@ -18,7 +18,7 @@ struct Calculate {
         return false
     }
     
-    func calc(expression: String) -> Double {
+    func calc(expression: String) -> String {
         var result = expression;
         let operations: [Operation] = [Div(), Multi(), Sum(), Sub()];
         
@@ -30,6 +30,21 @@ struct Calculate {
             }
         }
         
-        return Double(result) ?? 0
+        let value = Double(result) ?? 0
+        
+        return self.formater(value: value)
+    }
+    
+    func formater(value: Double) -> String {
+        let formater = NumberFormatter()
+        formater.decimalSeparator = "."
+        formater.numberStyle = .decimal
+        formater.maximumFractionDigits = 10
+        formater.minimumFractionDigits = 0
+        
+        if let formatedString = formater.string(from: NSNumber(value: value)) {
+            return formatedString
+        }
+        return String(value)
     }
 }
