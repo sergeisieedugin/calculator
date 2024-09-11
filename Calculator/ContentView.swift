@@ -21,7 +21,7 @@ enum ButtonText: String {
     case sum = "+"
     case substruct = "-"
     case divide = "/"
-    case multiply = "X"
+    case multiply = "*"
     case equal = "="
     case clearAll = "AC"
     case deleteOne = "<-"
@@ -116,6 +116,14 @@ struct ContentView: View {
         case .deleteOne:
             self.value = valueController.removeLast(value: self.value)
         case .equal:
+            let calculate: Calculate = Calculate()
+            self.value = String(calculate.calc(expression: self.value))
+            break
+        case .dot:
+            let regex = #/(^|[+\-*\/])\d+$/#
+            if let match = self.value.firstMatch(of: regex) {
+                self.value = valueController.printSymbol(incoming: button.rawValue, value: self.value)
+            }
             break
         default:
             self.value = valueController.printSymbol(incoming: button.rawValue, value: self.value)
