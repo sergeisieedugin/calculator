@@ -20,7 +20,10 @@ class ValueController {
     }
     
     func addOperation(value: String, symbol: String) -> String {
-        let result = deleteLastOperator(value: value)
+        var result = value
+        if (!((result.last == "*" || result.last == "/") && symbol == "-")) {
+            result = self.deleteLastOperator(value: result)
+        }
         if (result == "0") {
             return "0" + symbol
         }
@@ -35,7 +38,6 @@ class ValueController {
         if (String(value.last!) == "%") {
             return value
         }
-        
         if (value == "0") {
             return incoming
         }

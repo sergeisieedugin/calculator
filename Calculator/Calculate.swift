@@ -9,7 +9,7 @@ import Foundation
 
 
 struct Calculate {
-    func isNotEnd(expression: String, operation: Character) -> Bool {
+    func isAllowed(expression: String, operation: Character) -> Bool {
         if let index = expression.lastIndex(of: operation) {
             let position = expression.distance(from: expression.startIndex, to: index)
             return position > 0
@@ -23,7 +23,7 @@ struct Calculate {
         let operations: [Operation] = [Div(), Multi(), Sum(), Sub()];
         
         for operation in operations {
-            while (self.isNotEnd(expression: result, operation: operation.sign())) {
+            while (self.isAllowed(expression: result, operation: operation.sign())) {
                 result = result.replacing(operation.regex()) { match in
                     return operation.replacer(params: match.output)
                 }
