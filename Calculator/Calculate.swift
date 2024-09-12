@@ -29,9 +29,8 @@ struct Calculate {
                 }
             }
         }
-        
-        let value = Double(result) ?? 0
-        
+        let percent = Percent()
+        let value = percent.convertToValue(value: result)
         return self.formater(value: value)
     }
     

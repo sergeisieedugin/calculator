@@ -24,7 +24,7 @@ class ValueController {
         if (result == "0") {
             return "0" + symbol
         }
-        return printSymbol(incoming: symbol, value: result)
+        return result + symbol
     }
     
     func clearAll() -> String {
@@ -32,17 +32,38 @@ class ValueController {
     }
     
     func printSymbol(incoming: String, value: String) -> String {
+        if (String(value.last!) == "%") {
+            return value
+        }
+        
         if (value == "0") {
             return incoming
         }
         return value + incoming
     }
     
-    func removeLast (value: String)  -> String {
+    func removeLast(value: String)  -> String {
         let result = String(value.prefix(value.count-1))
         if (result.count == 0) {
             return "0"
         }
         return result
     }
+    
+    func addPercent(value: String) -> String {
+        let regex = #/\d+\.?$/#
+        if let match = value.firstMatch(of: regex) {
+            return self.printSymbol(incoming: "%", value: value)
+        }
+        return value
+    }
+    
+    func addDot(value: String) -> String {
+        let regex = #/(^|[+\-*\/])\d+$/#
+        if let match = value.firstMatch(of: regex) {
+            return self.printSymbol(incoming: ".", value: value)
+        }
+        return value
+    }
+     
 }

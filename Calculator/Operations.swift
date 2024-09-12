@@ -22,9 +22,35 @@ extension Operation {
     }
     
     func replacer(params: (Substring, Substring, Substring)) -> String {
-        let a = Double(params.1) ?? 0
-        let b = Double(params.2) ?? 0
+        let percent = Percent()
+        let a = percent.convertToValue(value: String(params.1))
+        let baseValue = ["*", "/"].contains(self.sign()) ? 1 : a
+        let b = percent.convertToValue(value: String(params.2), baseValue: baseValue)
+    
         return self.toString(number: self.applyOperation(a: a, b: b))
+    }
+}
+
+struct Percent {
+    func isPercent(value: String) -> Bool {
+        let lastChar = String(value.last!)
+        return lastChar == "%"
+    }
+    
+    func convertToValue(value: String, baseValue: Double = 1.0) -> Double {
+        if (self.isPercent(value: value)) {
+            return self.calcPercent(value: self.getClearValue(value: value), baseValue: baseValue)
+        }
+        return Double(value) ?? 0
+    }
+    
+    func getClearValue(value: String) -> Double {
+        let result = String(value.dropLast())
+        return Double(result) ?? 0
+    }
+    
+    func calcPercent(value: Double, baseValue: Double = 1.0) -> Double {
+        return value * baseValue / 100
     }
 }
 
@@ -34,7 +60,7 @@ struct Multi: Operation {
     }
     
     func regex() -> Regex<(Substring, Substring, Substring)> {
-        return #/([-+]?\d*\.?\d*)\*([-+]?\d*\.?\d*)/#
+        return #/([-+]?\d*\.?\d*%?)\*([-+]?\d*\.?\d*%?)/#
     }
     
     func applyOperation(a: Double, b: Double) -> Double {
@@ -48,7 +74,7 @@ struct Div: Operation {
     }
     
     func regex() -> Regex<(Substring, Substring, Substring)> {
-        return #/([-+]?\d*\.?\d*)\/([-+]?\d*\.?\d*)/#
+        return #/([-+]?\d*\.?\d*%?)\/([-+]?\d*\.?\d*%?)/#
     }
     
     func applyOperation(a: Double, b: Double) -> Double {
@@ -62,7 +88,7 @@ struct Sum: Operation {
     }
     
     func regex() -> Regex<(Substring, Substring, Substring)> {
-        return #/([-+]?\d*\.?\d*)\+([-+]?\d*\.?\d*)/#
+        return #/([-+]?\d*\.?\d*%?)\+([-+]?\d*\.?\d*%?)/#
     }
     
     func applyOperation(a: Double, b: Double) -> Double {
@@ -76,7 +102,7 @@ struct Sub: Operation {
     }
     
     func regex() -> Regex<(Substring, Substring, Substring)> {
-        return #/([-+]?\d*\.?\d*)\-([-+]?\d*\.?\d*)/#
+        return #/([-+]?\d*\.?\d*%?)\-([-+]?\d*\.?\d*%?)/#
     }
     
     func applyOperation(a: Double, b: Double) -> Double {

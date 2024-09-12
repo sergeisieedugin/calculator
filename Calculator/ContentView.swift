@@ -121,10 +121,10 @@ struct ContentView: View {
             self.value = calculate.calc(expression: valueController.deleteLastOperator(value: self.value))
             break
         case .dot:
-            let regex = #/(^|[+\-*\/])\d+$/#
-            if let match = self.value.firstMatch(of: regex) {
-                self.value = valueController.printSymbol(incoming: button.rawValue, value: self.value)
-            }
+            self.value = valueController.addDot(value: self.value)
+            break
+        case .percent:
+            self.value = valueController.addPercent(value: self.value)
             break
         default:
             self.value = valueController.printSymbol(incoming: button.rawValue, value: self.value)
