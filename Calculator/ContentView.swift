@@ -118,7 +118,7 @@ struct ContentView: View {
             self.value = valueController.removeLast(value: self.value)
         case .equal:
             let calculate: Calculate = Calculate()
-            self.value = calculate.calc(expression: self.value)
+            self.value = calculate.calc(expression: valueController.deleteLastOperator(value: self.value))
             break
         case .dot:
             let regex = #/(^|[+\-*\/])\d+$/#

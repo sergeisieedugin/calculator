@@ -9,13 +9,18 @@ import Foundation
 
 
 class ValueController {
-    func addOperation(value: String, symbol: String) -> String {
-        let symbolsArray = ["+", "-", "/", "X"]
-        var result = value
-        let lastChar = String(result.last!)
+    
+    func deleteLastOperator(value: String) -> String {
+        let symbolsArray = ["+", "-", "/", "*"]
+        let lastChar = String(value.last!)
         if (symbolsArray.contains(lastChar)) {
-            result = removeLast(value: result)
+            return removeLast(value: value)
         }
+        return value
+    }
+    
+    func addOperation(value: String, symbol: String) -> String {
+        let result = deleteLastOperator(value: value)
         if (result == "0") {
             return "0" + symbol
         }
