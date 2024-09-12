@@ -34,7 +34,7 @@ struct Multi: Operation {
     }
     
     func regex() -> Regex<(Substring, Substring, Substring)> {
-        return #/([-+]?\d+\.?\d*)\*([-+]?\d+\.?\d*)/#
+        return #/([-+]?\d*\.?\d*)\*([-+]?\d*\.?\d*)/#
     }
     
     func applyOperation(a: Double, b: Double) -> Double {
@@ -48,7 +48,7 @@ struct Div: Operation {
     }
     
     func regex() -> Regex<(Substring, Substring, Substring)> {
-        return #/([-+]?\d+\.?\d*)\/([-+]?\d+\.?\d*)/#
+        return #/([-+]?\d*\.?\d*)\/([-+]?\d*\.?\d*)/#
     }
     
     func applyOperation(a: Double, b: Double) -> Double {
@@ -62,7 +62,7 @@ struct Sum: Operation {
     }
     
     func regex() -> Regex<(Substring, Substring, Substring)> {
-        return #/([-+]?\d+\.?\d*)\+([-+]?\d+\.?\d*)/#
+        return #/([-+]?\d*\.?\d*)\+([-+]?\d*\.?\d*)/#
     }
     
     func applyOperation(a: Double, b: Double) -> Double {
@@ -76,7 +76,7 @@ struct Sub: Operation {
     }
     
     func regex() -> Regex<(Substring, Substring, Substring)> {
-        return #/([-+]?\d+\.?\d*)\-([-+]?\d+\.?\d*)/#
+        return #/([-+]?\d*\.?\d*)\-([-+]?\d*\.?\d*)/#
     }
     
     func applyOperation(a: Double, b: Double) -> Double {

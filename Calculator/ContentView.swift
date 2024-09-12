@@ -26,6 +26,7 @@ enum ButtonText: String {
     case clearAll = "AC"
     case deleteOne = "<-"
     case dot = "."
+    case percent = "%"
     
     
     
@@ -33,7 +34,7 @@ enum ButtonText: String {
     
     var color: Color {
         switch self {
-        case .divide, .multiply, .substruct, .sum, .deleteOne:
+        case .divide, .multiply, .substruct, .sum, .deleteOne, .percent:
             return .init(red: 0.80, green: 0.86, blue: 1.0)
         case .clearAll, .equal:
             return .init(red: 0.6, green: 0.73, blue: 0.93)
@@ -50,11 +51,11 @@ struct ContentView: View {
     private let valueController = ValueController()
     
     let buttons: [[ButtonText]] = [
-        [.clearAll, .divide, .multiply, .deleteOne],
-        [.seven, .eight, .nine, .substruct],
-        [.four, .five, .six, .sum],
-        [.one, .two, .three, .equal],
-        [.zero, .dot]
+        [.clearAll, .deleteOne, .percent, .divide],
+        [.seven, .eight, .nine, .multiply],
+        [.four, .five, .six, .substruct],
+        [.one, .two, .three, .sum],
+        [.zero, .dot, .equal]
     ]
     
     var body: some View {
@@ -94,7 +95,7 @@ struct ContentView: View {
     
     func buttonWidth (button: ButtonText) -> CGFloat {
         if (button == .zero) {
-            return ((UIScreen.main.bounds.width) / 4) * 3 - 12 * 2
+            return ((UIScreen.main.bounds.width) / 4) * 2 - 12 * 2
         }
         return (UIScreen.main.bounds.width - (5*12)) / 4
     }
