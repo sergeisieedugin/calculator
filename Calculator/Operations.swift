@@ -26,7 +26,7 @@ extension Operation {
         let a = percent.convertToValue(value: String(params.1))
         let baseValue = ["*", "/"].contains(self.sign()) ? 1 : a
         let b = percent.convertToValue(value: String(params.2), baseValue: baseValue)
-    
+        
         return self.toString(number: self.applyOperation(a: a, b: b))
     }
 }
