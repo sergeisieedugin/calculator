@@ -9,22 +9,17 @@ import Foundation
 
 
 struct Calculate {
-    func isAllowed(expression: String, operation: Character) -> Bool {
-        if let index = expression.lastIndex(of: operation) {
-            let position = expression.distance(from: expression.startIndex, to: index)
-            return position > 0
-        }
-        
-        return false
+    func isAllowed(expression: String, operation: Operation) -> Bool {
+        return expression.contains(operation.regex())
     }
     
     func calc(expression: String) -> String {
         var result = expression;
-        let operations: [Operation] = [Div(), Multi(), Sum(), Sub()];
+        let operations: [Operation] = [Div(), Multi(), Sum()];
         
         for operation in operations {
-            while (self.isAllowed(expression: result, operation: operation.sign())) {
-                result = result.replacing(operation.regex()) { match in
+            while (self.isAllowed(expression: result, operation: operation)) {
+                result = result.replacing(operation.regex(), maxReplacements: 1) { match in
                     return operation.replacer(params: match.output)
                 }
             }
